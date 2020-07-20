@@ -1,0 +1,16 @@
+﻿.hidden{
+    display: none !important;
+}
+
+.navbar-brand a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.field-validation-error {
+    display: block;
+}
+
+.bool-radio{
+    margin-right: 10px;
+}

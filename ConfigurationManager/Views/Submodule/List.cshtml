@@ -1,0 +1,71 @@
+﻿@model System.Collections.Generic.List<ConfigurationManager.Models.Submodule>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="m-3">Submodules</h3>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table m-1">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">Submodule Name</th>
+                        <th scope="col">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var submodule in Model)
+                    {
+                        <tr class="submodule-row" data-submodule-id="@submodule.Id">
+                            <td><a href="@Url.Action("List", "SubmoduleParameter", new { submoduleId = submodule.Id })">@submodule.Name</a></td>
+                            <td>
+                                <a href="#deleteConfirmationModal" data-toggle="modal" data-entity-id="@submodule.Id"
+                                   class="delete text-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" id="deleteConfirmationModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>All parameters of this submodule will be deleted.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form method="post" action="@Url.Action("Delete", "Submodule")">
+                        @Html.Hidden("id", "0")
+                        <button type="submit" class="btn btn-danger confirm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <a href="@Url.Action("Manage", "Submodule")" class="btn btn-success m-3">Add Submodule</a>
+    </div>
+</div>
+
+
+
+
